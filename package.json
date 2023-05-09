@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.5.0",
+    "apos-to-lex-form": "^1.0.5",
+    "mkdirp": "^3.0.1",
+    "natural": "^6.3.0",
+    "numjs": "^0.16.1"
+  }
+}

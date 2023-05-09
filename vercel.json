@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "name": "sentiment-analyzer",
+    "builds": [
+       { "src": "app.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+       { "src": "/(.*)", "dest": "/app.js" }
+    ]
+ }

@@ -16,14 +16,13 @@
     reader.onload = function(event) {
       const csvData = event.target.result;
       // Do something with the CSV data, such as parse and display it
-      console.log(csvData);
 
        // Parse the CSV data
     const rows = csvData.split("\n");
     const headers = rows[0].split(",");
     console.log(headers)
-    const reviewIndex = headers.indexOf("reviews\r") === -1 ? headers.indexOf("reviews\r") : headers.indexOf("review\r");
-    console.log(headers.includes("review\r"))
+    const reviewIndex = headers.indexOf("reviews\r") === -1 ? headers.indexOf("review\r") : headers.indexOf("reviews\r");
+    console.log(headers.indexOf("review\r"))
        // Check if the CSV file has a "reviews" or "review" column
        if (reviewIndex === -1) {
         alert("The CSV file does not have a 'reviews' or 'review' column");
@@ -39,7 +38,6 @@
 
 
     // Do something with the review data, such as display it
-    console.log(reviews);
     convertReviwes(reviews);
     };
     reader.readAsText(file);
@@ -47,17 +45,11 @@
 
   function convertReviwes(arr){
     const reviews = arr.map(r => r.replaceAll('"', '').replaceAll("'", ''));
-  analyzeReviews(reviews)
+    analyzeReviews(reviews)
     .then(results => {
-      for (const score of results) {
-        if (score < 0) {
-          console.log("neg");
-        } else if (score === 0) {
-          console.log("neutral");
-        } else {
-          console.log("positive");
-        }
-      }
+      const sum = results.reduce((acc, cur) => acc + cur, 0);
+      const avg = (sum / results.length)*100;
+      console.log(`Average sentiment score: ${avg}%`);
     })
     .catch(err => {
       console.log(err);
@@ -83,8 +75,8 @@
 
     const response = await fetch('/api/nlp/s-analyzer', options);
     const { analysis } = await response.json();
-    results.push(...analysis);
-  }
+    results.push(analysis);
+    }
 
   return results;
 }

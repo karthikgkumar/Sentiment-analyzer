@@ -9,8 +9,16 @@ const spellCorrector = new SpellCorrector();
 spellCorrector.loadDictionary();
 
 router.post("/s-analyzer", function (req, res, next) {
-  const { review } = req.body;
-  const lexedReview = aposToLexForm(review);
+  try{
+    console.log("inside try")
+    const { r } = req.body;
+    console.log(r)
+    let reviwes50 = "";
+    for (const review of r) {
+      reviwes50 += review.trim() + "\n";
+    }
+    console.log(reviwes50);
+  const lexedReview = aposToLexForm(reviwes50);
   const casedReview = lexedReview.toLowerCase();
   const alphaOnlyReview = casedReview.replace(/[^a-zA-Z\s]+/g, "");
 
@@ -24,8 +32,13 @@ router.post("/s-analyzer", function (req, res, next) {
   const { SentimentAnalyzer, PorterStemmer } = natural;
   const analyzer = new SentimentAnalyzer('English', PorterStemmer, 'afinn');
   const analysis = analyzer.getSentiment(filteredReview);
-
+  console.log(analysis)
   res.status(200).json({ analysis });
+  }catch(err){
+    console.log(err)
+    res.status(422)
+  }
+  
 });
 
 module.exports = router;

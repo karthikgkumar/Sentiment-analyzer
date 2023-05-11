@@ -18,3 +18,37 @@ a {
   background-color: #eee;
   border: 2px dashed #aaa;
 }
+.navbar{
+  display: flex;
+  align-items: center;
+ justify-content: space-between;
+}
+span{
+padding: 10px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 29px;
+color: #857676;
+}
+ .section-1{
+  display: flex;
+  flex-direction: column;
+  margin-right:30%;
+  
+ }
+ .container{
+  display: flex;
+  flex-direction: row;
+
+   
+ }
+ .outer--container{
+  width: 528px;
+  height: 370px;
+background: black;
+box-shadow: 0px 4px 37px rgba(128, 128, 128, 0.25);
+border-radius: 15px;
+ }

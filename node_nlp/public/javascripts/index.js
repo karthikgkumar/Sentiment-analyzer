@@ -81,3 +81,82 @@
   return results;
 }
 
+
+const dropArea = document.getElementById('drop-area');
+// Prevent default drag behaviors
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, preventDefaults, false);
+});
+
+// Highlight drop area when item is dragged over
+['dragenter', 'dragover'].forEach(eventName => {
+  dropArea.addEventListener(eventName, highlight, false);
+});
+
+// Unhighlight drop area when item is dragged out
+['dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, unhighlight, false);
+});
+
+// Handle dropped files
+dropArea.addEventListener('drop', handleDrop, false);
+
+
+function preventDefaults(event) {
+  event.preventDefault();
+  event.stopPropagation();
+}
+
+function highlight(event) {
+  dropArea.classList.add('highlight');
+  console.log("highlight")
+}
+
+function unhighlight(event) {
+  dropArea.classList.remove('highlight');
+}
+
+function handleDrop(event) {
+  const dt = event.dataTransfer;
+  const files = dt.files;
+
+  handleFiles(files);
+}
+
+function handleFiles(files) {
+  for (const file of files) {
+    if (file.type === 'text/csv' && file.size <= 20000000) {
+      const reader = new FileReader();
+      reader.readAsText(file);
+      reader.onload = function() {
+        const csvData = reader.result;
+        // Do something with the CSV data
+        // Parse the CSV data
+    const rows = csvData.split("\n");
+    const headers = rows[0].split(",");
+    console.log(headers)
+    const reviewIndex = headers.indexOf("reviews\r") === -1 ? headers.indexOf("review\r") : headers.indexOf("reviews\r");
+    console.log(headers.indexOf("review\r"))
+       // Check if the CSV file has a "reviews" or "review" column
+       if (reviewIndex === -1) {
+        alert("The CSV file does not have a 'reviews' or 'review' column");
+        return;
+      }
+
+       // Extract the review data
+      const reviews = [];
+      for (let i = 1; i < (rows.length-1); i++) {
+        const cells = rows[i].split(",");
+        reviews.push(cells[reviewIndex]);
+    }
+
+
+    // Do something with the review data, such as display it
+    convertReviwes(reviews);
+    };
+      
+    } else {
+      console.log('File type or size not supported');
+    }
+  }
+}

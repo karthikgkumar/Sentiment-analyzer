@@ -6,3 +6,15 @@ body {
 a {
   color: #00B7FF;
 }
+
+#drop-area {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.highlight {
+  background-color: #eee;
+  border: 2px dashed #aaa;
+}

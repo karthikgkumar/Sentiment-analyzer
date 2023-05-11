@@ -1,7 +1,8 @@
   function uploadCSV() {
     // Get the file input element
+     
     const fileInput = document.getElementById("csv-file");
-    
+   
     // Get the CSV file
     const file = fileInput.files[0];
     
@@ -41,15 +42,22 @@
     convertReviwes(reviews);
     };
     reader.readAsText(file);
+
+     
   }
 
-  function convertReviwes(arr){
+  function convertReviwes(arr){ 
+     const result=document.getElementById("result");
+
     const reviews = arr.map(r => r.replaceAll('"', '').replaceAll("'", ''));
     analyzeReviews(reviews)
     .then(results => {
       const sum = results.reduce((acc, cur) => acc + cur, 0);
       const avg = Math.round((sum / results.length)*100);
       console.log(`Average sentiment score: ${avg}%`);
+      var average=avg
+      var newPageUrl = 'result.html?average=' + average;
+      window.location.href = newPageUrl;
     })
     .catch(err => {
       console.log(err);

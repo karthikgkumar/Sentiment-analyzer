@@ -6,13 +6,7 @@
 </head>
 
 <body>
-  <div id="drop-area">
-    <p>Drag and drop your CSV file here</p>
-    <p>or</p>
-    <p>Upload your CSV File here</p>
-    <input type="file" id="csv-file">
-    <button onclick="uploadCSV()">Upload CSV</button>
-  </div>
+ 
   
 <div class="navbar">
   <img src="assets/InSights.svg" alt="InSights" >
@@ -29,20 +23,63 @@
   </div>
 
   <div class="section-2">
-     <div class="outer--container"></div>
-     <img src="assets/pdt.svg" alt="landing" >
+     <!--
+      <div class="inner-container">
+      <img src="assets/icon.svg" alt="icon" class="upload--icon" >
+      <div class="upload--text"><b>Drag and Drop your csv file here </b></div>
+       <div  style="position:absolute;left:9em;top:11em;display:flex ;align-items:center;justify-content: center;">
+        <img src="assets/line.png" >
+        <div style="padding:10px">OR</div>
+        <img src="assets/line.png">
+       </div>
+        
+       <button class="inner-button" style="display:flex;align-items:center;justify-content: center;">
+        <div style="font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        
+        color: #FFFFFF;">Upload File </div>
+       <img src="assets/upload2.svg" width="54px" height="54px" style="margin-top:14px;">
+       </button>
+       
+      </div>
+     </div>
+   
     </div>
 
+  -->
+   
 
+ <div id="drop-area">
+  <div class="outer--container">
+    <div class="inner-container">
+      <img src="assets/icon.svg" alt="icon" class="upload--icon" >
+      <div class="upload--text"><b>Drag and Drop your csv file here </b></div>
+      <div  style="position:absolute;left:9em;top:11em;display:flex ;align-items:center;justify-content: center;">
+        <img src="assets/line.png" >
+        <div style="padding:10px">OR</div>
+        <img src="assets/line.png">
+       </div>
+     
+    <input type="file" id="csv-file" class="input--button" >
+    <button onclick="uploadCSV() " id="myButton"
+       
+     class="inner-button" style="display:flex;align-items:center;justify-content: center;">
+      <b>Upload File</b>
+      
+    </button>
+    <div id="result">
+      result
+    </div>
+  </div>
+  </div>
 </div>
+ 
 
 
 
-
-
-  <input type="file" id="csv-file">
-  <button onclick="uploadCSV()">Upload CSV</button>
-</body>
 
   <script type="text/javascript" src="./javascripts/index.js"></script>
 </body>

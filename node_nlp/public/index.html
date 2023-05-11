@@ -6,6 +6,12 @@
 </head>
 
 <body>
+  <div id="drop-area">
+    <p>Drag and drop your CSV file here</p>
+    <p>or</p>
+    <label for="file-upload">Select a file:</label>
+    <input type="file" id="file-upload" accept=".csv" />
+  </div>
   <input type="file" id="csv-file">
   <button onclick="uploadCSV()">Upload CSV</button>
 </body>

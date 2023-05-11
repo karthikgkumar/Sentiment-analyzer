@@ -15,6 +15,7 @@ router.post("/s-analyzer", function (req, res, next) {
     for (const review of r) {
       reviwes50 += review.trim() + "\n";
     }
+  console.log(reviwes50)
   const lexedReview = aposToLexForm(reviwes50);
   const casedReview = lexedReview.toLowerCase();
   const alphaOnlyReview = casedReview.replace(/[^a-zA-Z\s]+/g, "");
@@ -30,6 +31,7 @@ router.post("/s-analyzer", function (req, res, next) {
   const analyzer = new SentimentAnalyzer('English', PorterStemmer, 'afinn');
   const analysis = analyzer.getSentiment(filteredReview);
   res.status(200).json({ analysis });
+  console.log(analysis)
   }catch(err){
     console.log(err)
     res.status(422)

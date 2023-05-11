@@ -48,7 +48,7 @@
     analyzeReviews(reviews)
     .then(results => {
       const sum = results.reduce((acc, cur) => acc + cur, 0);
-      const avg = (sum / results.length)*100;
+      const avg = Math.round((sum / results.length)*100);
       console.log(`Average sentiment score: ${avg}%`);
     })
     .catch(err => {
@@ -80,3 +80,4 @@
 
   return results;
 }
+

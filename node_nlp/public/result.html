@@ -14,43 +14,45 @@
 <div class="navbar">
     <img src="assets/InSights.svg" alt="InSights" >
     <div>
-  <span>Log In</span>
-  <span>Sign Up</span></div>
-  </div>
-  <div class="title">YOUR ANALYSIS IS HERE</div>
-  <div class="circle--avg">
-  <img src="assets/chart.png" class="chart--img">
-   <div id="resultContainer" class="circle--text"></div>
- </div>
- <div id="analysis--container">
- </div>
-  
-  <script>
-    // Retrieve the 'avg' value from the query parameters
-    var urlParams = new URLSearchParams(window.location.search);
-    var avg = urlParams.get('average');
-    
-    var resulttext ="";
-     if (avg>50)
-      {
-         resulttext = "positive";
-      }
-      else if(avg<50)
-      {
-        resulttext = "negative";
-      }
-      else
-      {
-        resulttext = "neutral";
-      }
+        <span>Log In</span>
+        <span>Sign Up</span>
+    </div>
+</div>
+<div class="title">YOUR ANALYSIS IS HERE</div>
+<div class="circle--avg">
+    <img src="assets/chart.png" class="chart--img">
+    <div id="resultContainer" class="circle--text"></div>
+    <div class="pointer"></div>
+</div>
+<div id="analysis--container"></div>
 
-    // Display the 'avg' value in the result container
-    var resultContainer = document.getElementById('resultContainer');
-    resultContainer.textContent =avg+`%`;
-     document.getElementById("analysis--container").innerHTML = `<div class="analysis--text">Your company has  ${avg}% ${resulttext} reviews </div>`;
-  </script>
+<script>
+    // Function to be executed after the document has finished loading
+    document.addEventListener('DOMContentLoaded', function () {
+        // Retrieve the 'avg' value from the query parameters
+        var urlParams = new URLSearchParams(window.location.search);
+        var avg = urlParams.get('average');
 
-    
-    <script type="text/javascript" src="./javascripts/index.js"></script>
+        var resulttext = "";
+        if (avg > 50) {
+            resulttext = "positive";
+        } else if (avg < 50) {
+            resulttext = "negative";
+        } else {
+            resulttext = "neutral";
+        }
+
+        // Display the 'avg' value in the result container
+        var resultContainer = document.getElementById('resultContainer');
+        resultContainer.textContent = avg + `%`;
+
+        document.getElementById("analysis--container").innerHTML = `<div class="analysis--text">Your company has  ${avg}% ${resulttext} reviews </div>`;
+
+        var circleAvgElement = document.querySelector('.circle--avg');
+        circleAvgElement.classList.add(resulttext);
+    });
+</script>
+
+<script type="text/javascript" src="./javascripts/index.js"></script>
 </body>
 </html>

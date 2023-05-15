@@ -1,4 +1,6 @@
-  function uploadCSV() {
+console.log(window.innerWidth)
+
+function uploadCSV() {
     // Get the file input element
      
     const fileInput = document.getElementById("csv-file");
